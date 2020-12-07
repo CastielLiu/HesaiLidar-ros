@@ -10,6 +10,7 @@
 	<arg name="pcldata_type"  default="0"/>
 	<arg name="lidar_correction_file"  default="$(find hesai_lidar)/config/correction.csv"/>
 	<arg name="calibration_file"  default="$(find hesai_lidar)/config/calibration.yml"/>
+	<arg name="rviz"  default="false"/>
 
 	<node pkg="hesai_lidar" name="hesai_lidar" type="hesai_lidar_node" output="screen" >
 		<param name="pcap_file" type="string" value="$(arg pcap_file)"/>
@@ -24,4 +25,6 @@
 		<param name="laser_count"  type="int" value="$(arg laser_count)"/>
 		<param name="pcldata_type"  type="int" value="$(arg pcldata_type)"/>
 	</node>
+	
+	<node name="p40p_rviz" pkg="rviz" type="rviz" args="-d $(find hesai_lidar)/rviz/p40p.rviz" if="$(arg rviz)"/>
 </launch>
