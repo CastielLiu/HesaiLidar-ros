@@ -99,7 +99,7 @@ public:
 
   void lidarCallback(boost::shared_ptr<PPointCloud> cld, double timestamp)
   {
-    pcl_conversions::toPCL(ros::Time(timestamp), cld->header.stamp);
+    pcl_conversions::toPCL(ros::Time::now(), cld->header.stamp);
     sensor_msgs::PointCloud2 output;
     pcl::toROSMsg(*cld, output);
     lidarPublisher.publish(output);
